@@ -57,7 +57,7 @@ RESET="$(tput sgr0)"
 : ${STOP_TIME=600}
 
 # Git repository to use when building Steem - containing steemd code
-: ${STEEM_SOURCE="https://github.com/steemit/steem.git"}
+: ${STEEM_SOURCE="https://github.com/dpdanpittman/Steem-Classic.git"}
 
 # Comma separated list of ports to expose to the internet.
 # By default, only port 2001 will be exposed (the P2P seed port)
