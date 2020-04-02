@@ -13,7 +13,7 @@ RUN apt-get update && \
 
 ARG steemd_version=stable
 
-ARG STEEM_SOURCE="https://github.com/steemitofficial/steem.git"
+ARG STEEM_SOURCE="https://github.com/dpdanpittman/Steem-Classic.git"
 ENV STEEM_SOURCE ${STEEM_SOURCE}
 
 ARG STEEM_STATIC_BUILD=ON
