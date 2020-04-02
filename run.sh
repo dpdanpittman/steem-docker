@@ -48,8 +48,8 @@ MAGENTA="$(tput setaf 5)"
 CYAN="$(tput setaf 6)"
 WHITE="$(tput setaf 7)"
 RESET="$(tput sgr0)"
-: ${DK_TAG="someguy123/steem:latest"}
-: ${DK_TAG_FULL="someguy123/steem:latest-full"}
+: ${DK_TAG="steemitofficial/steem:latest"}
+: ${DK_TAG_FULL="steemitofficial/steem:latest-full"}
 : ${SHM_DIR="/dev/shm"}
 : ${REMOTE_WS="wss://steemd.privex.io"}
 # Amount of time in seconds to allow the docker container to stop before killing it.
@@ -57,7 +57,7 @@ RESET="$(tput sgr0)"
 : ${STOP_TIME=600}
 
 # Git repository to use when building Steem - containing steemd code
-: ${STEEM_SOURCE="https://github.com/steemit/steem.git"}
+: ${STEEM_SOURCE="https://github.com/steemitofficial/steem.git"}
 
 # Comma separated list of ports to expose to the internet.
 # By default, only port 2001 will be exposed (the P2P seed port)
@@ -554,12 +554,12 @@ install() {
     if (( $# == 1 )); then
         DK_TAG=$1
         # If neither '/' nor ':' are present in the tag, then for convenience, assume that the user wants
-        # someguy123/steem with this specific tag.
+        # steemitofficial/steem with this specific tag.
         if grep -qv ':' <<< "$1"; then
             if grep -qv '/' <<< "$1"; then
                 msg bold red "WARNING: Neither / nor : were present in your tag '$1'"
-                DK_TAG="someguy123/steem:$1"
-                msg red "We're assuming you've entered a version, and will try to install @someguy123's image: '${DK_TAG}'"
+                DK_TAG="steemitofficial/steem:$1"
+                msg red "We're assuming you've entered a version, and will try to install @steemitofficial's image: '${DK_TAG}'"
                 msg yellow "If you *really* specifically want '$1' from Docker hub, set DK_TAG='$1' inside of .env and run './run.sh install'"
             fi
         fi
@@ -575,7 +575,7 @@ install() {
 
 # Usage: ./run.sh install_full
 # Downloads the Steem full node image from the pre-set $DK_TAG_FULL in run.sh or .env
-# Default tag is normally someguy123/steem:latest-full (official builds by the creator of steem-docker).
+# Default tag is normally steemitofficial/steem:latest-full.
 #
 install_full() {
     msg yellow " -> Loading image from ${DK_TAG_FULL}"
@@ -959,7 +959,7 @@ ver() {
                 echo "    To update, use ./run.sh install - a replay may or may not be required (ask in #witness on steem.chat)${RESET}"
             else
                 echo "${GREEN}Your installed docker image ($dkimg_id) matches Docker Hub ($remote_docker_id)"
-                echo "You're running the latest version of Steem from @someguy123's builds${RESET}"
+                echo "You're running the latest version of Steem from @steemitofficial builds${RESET}"
             fi
         else
             echo "    ${YELLOW}An error occurred while checking for updates${RESET}"
@@ -1133,7 +1133,7 @@ sb_clean() {
 publish() {
     if (( $# < 2 )); then
         msg green "Usage: $0 publish [mira|nomira] [version] (extratag def: latest)"
-        msg yellow "Environment vars:\n\tMAIN_TAG - Override the primary tag (default: someguy123/steem:\$V)\n"
+        msg yellow "Environment vars:\n\tMAIN_TAG - Override the primary tag (default: steemitofficial/steem:\$V)\n"
         return 1
     fi
     MKMIRA="$1"
@@ -1154,13 +1154,13 @@ publish() {
 
     V="$2"
     
-    : ${MAIN_TAG="someguy123/steem:$V"}
+    : ${MAIN_TAG="steemitofficial/steem:$V"}
     [[ "$MKMIRA" == "mira" ]] && SECTAG="latest-mira" || SECTAG="latest"
     (( $# > 2 )) && SECTAG="$3"
     if [[ "$SECTAG" == "n/a" ]]; then
         msg bold yellow  " >> Will build tag $V as tags $MAIN_TAG (no second tag)"
     else
-        SECOND_TAG="someguy123/steem:$SECTAG"
+        SECOND_TAG="steemitofficial/steem:$SECTAG"
         msg bold yellow " >> Will build tag $V as tags $MAIN_TAG and $SECOND_TAG"
     fi
     sleep 5
