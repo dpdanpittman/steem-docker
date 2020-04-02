@@ -22,21 +22,8 @@ shared-file-scale-rate = 1000
 flush = 100000
 
 # P2P nodes to connect to on startup (may specify multiple times)
-p2p-seed-node = anyx.io:2001                        # @anyx (CA)
-p2p-seed-node = gtg.steem.house:2001                # @gtg (PL)
-p2p-seed-node = lafonasteem.com:2001                # @lafona (FR)
-p2p-seed-node = seed.roelandp.nl:2001               # @roelandp (FI)
-p2p-seed-node = seed.esteem.ws:2001                 # @good-karma (FI)
-#p2p-seed-node = 176.31.126.187:2001                 # @timcliff (FR)
-p2p-seed-node = seed.thecryptodrive.com:2001        # @thecryptodrive (FI)
-p2p-seed-node = 104.199.118.92:2001                 # @clayop (US?)
-p2p-seed-node = seed.steemviz.com:2001              # @ausbitbank (SE)
-p2p-seed-node = steem-seed.lukestokes.info:2001     # @lukestokes (SE)
-p2p-seed-node = node.mahdiyari.info:2001            # @mahdiyari (FI)
-p2p-seed-node = steemseed-fin.privex.io:2001        # @privex (FI)
-p2p-seed-node = steemseed-se.privex.io:2001         # @privex (SE)
-p2p-seed-node = seed.steemmonsters.com:2001         # @aggroed (SE)
-
+p2p-seed-node = api.steemit.io:2001                        # @steemit (?)
+p2p-seed-node = steemd.minnowsupportproject.org:2001       # @followbtcnews (?)
 
 # Pairs of [BLOCK_NUM,BLOCK_ID] that should be enforced as checkpoints.
 # checkpoint =
