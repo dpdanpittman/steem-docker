@@ -24,6 +24,7 @@ flush = 100000
 # P2P nodes to connect to on startup (may specify multiple times)
 p2p-seed-node = api.steemit.io:2001                        # @steemit (?)
 p2p-seed-node = steemd.minnowsupportproject.org:2001       # @followbtcnews (?)
+p2p-seed-node = steemd.privex.io:2001                      # @prives (BZ)
 
 # Pairs of [BLOCK_NUM,BLOCK_ID] that should be enforced as checkpoints.
 # checkpoint =
@@ -70,7 +71,7 @@ history-per-size = 5760
 enable-stale-production = false
 
 # Percent of witnesses (0-99) that must be participating in order to produce blocks
-required-participation = 33
+required-participation = 20
 
 # name of witness controlled by this node (e.g. initwitness )
 # witness =
