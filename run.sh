@@ -48,8 +48,8 @@ MAGENTA="$(tput setaf 5)"
 CYAN="$(tput setaf 6)"
 WHITE="$(tput setaf 7)"
 RESET="$(tput sgr0)"
-: ${DK_TAG="someguy123/steem:latest"}
-: ${DK_TAG_FULL="someguy123/steem:latest-full"}
+: ${DK_TAG="someguy123/latest"}
+: ${DK_TAG_FULL="someguy123/latest-full"}
 : ${SHM_DIR="/dev/shm"}
 : ${REMOTE_WS="wss://steemd.privex.io"}
 # Amount of time in seconds to allow the docker container to stop before killing it.
@@ -226,7 +226,7 @@ optimize() {
 
 parse_build_args() {
     BUILD_VER=$1
-    CUST_TAG="steem:$BUILD_VER"
+    CUST_TAG="steem-classic:$BUILD_VER"
     if (( $BUILD_FULL == 1 )); then
         CUST_TAG+="-full"
     fi
@@ -284,7 +284,7 @@ build_local() {
 # e.g. build v0.20.6
 #
 # Override destination tag:
-#   ./run.sh build v0.21.0 tag 'steem:latest'
+#   ./run.sh build v0.21.0 tag 'steem-classic:latest'
 #
 # Additional build args:
 #   ./run.sh build v0.21.0 ENABLE_MIRA=OFF
@@ -310,7 +310,7 @@ build() {
         For your safety, we've tagged this image as $CUST_TAG
         To use it in this steem-docker, run: 
         ${GREEN}${BOLD}
-        docker tag $CUST_TAG steem:latest
+        docker tag $CUST_TAG steem-classic:latest
         ${RESET}${RED}
     !!! !!! !!! !!! !!! !!! READ THIS !!! !!! !!! !!! !!! !!!
     !!! !!! !!! !!! !!! !!! READ THIS !!! !!! !!! !!! !!! !!!
@@ -548,7 +548,7 @@ install_docker() {
 #         format: user/repo:version    or   user/repo   (uses the 'latest' tag)
 #
 # If no tag specified, it will download the pre-set $DK_TAG in run.sh or .env
-# Default tag is normally someguy123/steem:latest (official builds by the creator of steem-docker).
+	# Default tag is normally someguy123/steem:latest (official builds by the creator of steem-docker).
 #
 install() {
     if (( $# == 1 )); then
@@ -937,9 +937,9 @@ ver() {
     ####
     echo "${BLUE}Steem image installed:${RESET}"
     # Pretty printed docker image ID + creation date
-    dkimg_output=$(docker images -f "reference=steem:latest" --format "Tag: {{.Repository}}, Image ID: {{.ID}}, Created At: {{.CreatedSince}}")
+    dkimg_output=$(docker images -f "reference=steem-classic:latest" --format "Tag: {{.Repository}}, Image ID: {{.ID}}, Created At: {{.CreatedSince}}")
     # Just the image ID
-    dkimg_id=$(docker images -f "reference=steem:latest" --format "{{.ID}}")
+    dkimg_id=$(docker images -f "reference=steem-classic:latest" --format "{{.ID}}")
     # Used later on, for commands that depend on the image existing
     got_dkimg=0
     if [[ $(wc -c <<< "$dkimg_output") -lt 10 ]]; then
@@ -983,10 +983,10 @@ ver() {
         # If the docker image check was successful earlier, then compare the image to the current container 
         if [[ "$got_dkimg" == 1 ]]; then
             if [[ "$container_image_id" == "$dkimg_id" ]]; then
-                echo "    ${GREEN}Container $DOCKER_NAME is running image $container_image_id, which matches steem:latest ($dkimg_id)"
+                echo "    ${GREEN}Container $DOCKER_NAME is running image $container_image_id, which matches steem-classic:latest ($dkimg_id)"
                 echo "    Your container will not change Steem version on restart${RESET}"
             else
-                echo "    ${YELLOW}Warning: Container $DOCKER_NAME is running image $container_image_id, which DOES NOT MATCH steem:latest ($dkimg_id)"
+                echo "    ${YELLOW}Warning: Container $DOCKER_NAME is running image $container_image_id, which DOES NOT MATCH steem-classic:latest ($dkimg_id)"
                 echo "    Your container may change Steem version on restart${RESET}"
             fi
         else
